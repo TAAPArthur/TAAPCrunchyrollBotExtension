@@ -1,0 +1,38 @@
+{
+	"manifest_version": 2,
+
+	"name": "TAAP Crunchy Bot",
+	"description": "Cruncyroll Bot",
+	"version": "1.0.1.0",
+	"icons": {
+          "16": "icon.png"
+      },
+	"browser_action": {
+		"default_icon": "icon.png"
+		},
+	"background": {
+		"scripts": ["background.js","menu.js"],
+		"persistent": false
+		},
+	"content_scripts": [
+		{	
+			"matches": ["*://www.crunchyroll.com/","*://www.crunchyroll.com/login"],	
+			"js": ["login.js","loginManager.js"]
+		},
+		{	
+			"matches": ["*://*/*"],	
+			"run_at":"document_idle",
+			"js": ["videoPlaybackModifer.js"]
+		}
+	],
+  "update_url": "http://taaparthur.no-ip.org/CrunchyBot/updates.xml",
+
+	"permissions": [
+		"activeTab",
+		"storage",
+		"contextMenus",
+		"tabs",
+		"http://*/*",
+		"https://*/*"
+	]
+}
