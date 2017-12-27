@@ -3,7 +3,6 @@ var videoElement;
 document.addEventListener("mousedown", function(event) {
 	//right click
 	if (event.button == 2) {
-		console.log(event.target);
 		videoElement = event.target;
 	}
 }, true);
@@ -12,12 +11,12 @@ document.addEventListener("mousedown", function(event) {
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		if (request.videoRate)
-			setPlaybackRate(rate);
+			setPlaybackRate(request.videoRate);
 		videoElement = null;
 	});
 
 function setPlaybackRate(rate) {
-	if (request.videoRate)
+	if (rate)
 		if (videoElement) {
 			videoElement.playbackRate = rate;
 			console.log("setting playbackrate to " + rate);
